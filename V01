@@ -1,0 +1,732 @@
+CADTECH RAFTER TRUSS STUDIO - LAPTOP EDITION
+============================================
+
+Windows start:
+1. Install Python 3 if it is not already installed.
+2. Extract this ZIP to a normal folder.
+3. Double-click Start_CadTech.bat.
+4. CadTech opens automatically in your default browser as a LOCAL app.
+5. Keep the small launcher window open while using the app.
+
+No npm install and no internet connection are required for the bundled application.
+Three.js and web-ifc runtime files are included locally.
+
+MAIN WORKSPACE
+- Import OBJ / IFC rafter models
+- Generate full roof truss assembly
+- Common / Stepdown / Girder / Front Jack / Side Jack / proposed Hip Carrier
+- 3D orbit, pan and zoom
+- Plan / Front / Side / Split views
+- Truss schedule and family filters
+- Original rafter display
+- Member selection and isolation
+- Truss shape intents and web configurations
+- Preliminary automatic member sizing / optimization
+- Project/export functions already supplied by the source application
+
+IMPORTANT ENGINEERING SCOPE
+This software is a preliminary/concept structural screening and geometry tool.
+It is not a replacement for code-compliant engineering, connection/plate design,
+bracing design, load-path verification or engineer certification.
+
+CAD / DXF ROOF PLAN WORKFLOW
+============================
+The app now accepts ASCII DXF roof plans in addition to OBJ and IFC.
+
+Recommended CAD setup:
+1. Put the exterior eave/perimeter and ridge/hip/valley roof lines on one layer (for example ROOF).
+2. Put the truss layout/center lines on another layer (for example TRUSS or WALL).
+3. Import the DXF.
+4. Choose Roof layer and Truss lines layer.
+5. Enter the roof angle in degrees.
+6. Confirm CAD units (Auto reads $INSUNITS when available).
+7. Click Rebuild CAD roof if settings change.
+8. Click Generate complete roof.
+
+CadTech reconstructs 3D top-chord profiles from the 2D layout and roof pitch, then sends them into the same roof assembly engine used by OBJ/IFC imports. This allows Common, Stepdown, Girder, Front Jack, Side Jack and Hip Carrier classification/generation from CAD plan geometry.
+
+Included regression sample: app/sample-roof-plan.dxf
+Default sample layers: ROOF for roof geometry and WALL for truss layout lines. The sample DXF declares inches.
+
+IMPORTANT: CAD-derived roof heights and structural classification are automated conceptual reconstruction. Review roof-line semantics, bearings, loads, member sizing, connections and engineering before construction use.
+
+
+ADVANCED WOOD STRUCTURAL ANALYSIS UPDATE
+- Load inputs: dead, roof live, snow, wind/uplift, bottom-chord live, construction, special/solar allowance.
+- Multiple strength/service combinations; member axial tension/compression, Euler buckling screening, reactions/uplift and deflection.
+- Automatic web comparison: Fink, Howe, Pratt, Fan, Warren, Queen, Kingpost.
+- Timber sizing: 2x4, 2x6, 2x8, 2x10, 2x12; then 2-ply and 3-ply; then valid additional-bearing search.
+- Preliminary engineering only: connector/nail-plate design, full bending/shear interaction, bracing, load transfer and jurisdiction-specific certification are not implemented.
+
+CADTECH DESIGN DOCUMENT UPDATE
+- Heel / bottom-chord drop is user-adjustable from 50 to 1200 mm before roof generation.
+- 3D dimensional-lumber solids extend through panel-point centerlines to eliminate visible corner gaps.
+- CadTech truss design PDF follows a professional truss-calculation layout: design information, truss elevation, load cases, member schedule, reactions, takeoff and issue notes.
+- No CadTech/fabricator/client-company branding is reproduced.
+- Construction issue still requires project-specific engineering verification of connector plates/fasteners, bracing, load transfer, bearings/tie-downs, foundations and applicable-code certification.
+
+CADTECH ENGINEERING WORKFLOW UPGRADE
+------------------------------------
+Added independent CadTech workflow features inspired by common component-design workflows:
+- US / Canada / Australia / Custom workflow profiles (metadata + review gating; not certification)
+- Timber grade presets with editable allowable axial value
+- Bearing-length and bearing-capacity screening
+- Uplift / hold-down screening
+- Generic user-defined joint/plate capacity screening (0 = unverified)
+- Compression-member bracing flags
+- Jack-to-girder / hip-carrier reaction-transfer identification and DESIGN REQUIRED gating
+- Relative timber + plate + labor cost model
+- Fabrication CSV member schedule
+- QA / revision JSON snapshot
+- Engineering/QA tables in the CadTech truss PDF
+
+IMPORTANT: Generic connection capacity must come from validated project/manufacturer engineering data. CadTech does not contain or claim proprietary CadTech connector-plate engineering. Identified transfer loads still require receiving-truss nodal reanalysis. Full code-specific timber interaction equations, permanent/temporary bracing design, connection certification and foundation design require qualified engineering verification.
+
+WHOLE-BUILDING FRAMING EDITION
+- Floor framing generator: floor trusses, I-joists and LVL joist schedules.
+- EWP/LVL section selector and optional center LVL beam with ply count.
+- Multi-storey perimeter wall-panel generator with stud size/spacing schedules.
+- Gravity load-path ledger: analyzed roof reactions + floor area loads + wall self-weight, accumulated by storey to foundation.
+- Whole-building take-off CSV, load-path CSV and JSON building-model export.
+- Product-specific I-joist/LVL capacities, openings/headers, shear walls, diaphragm/lateral transfer, connectors and foundations remain DESIGN REQUIRED until validated data/calculation modules are supplied.
+
+WALL + FLOOR PRO EXTENSION
+- Automatic wall opening framing schedules: king studs, jack/trimmer studs, cripples and headers.
+- Automatic wall panel breaks and sheathing quantities.
+- Floor/stair opening schedules with doubled trimmer/header intent, rim board, blocking and subfloor sheathing.
+- Vertical roof-reaction point-load tracing through storeys with GREEN/AMBER/RED review semantics (current geometry tracer is approximate; exact XY stiffness distribution remains future solver work).
+- Wall panel, floor framing and vertical alignment CSV exports.
+- Manufacturer-specific I-joist/LVL capacities, connector hardware, shear walls/diaphragms and certified code design are not invented; these remain REVIEW / DESIGN REQUIRED until validated data engines are connected.
+
+WHOLE-BUILDING IMPORT UPGRADE
+- Whole-Building workspace now accepts architectural DXF and OBJ inputs.
+- DXF recognition is layer-aware: WALL/A-WALL/PARTITION, DOOR, WINDOW, FLOOR/SLAB/DECK, STAIR/VOID/OPENING/SHAFT, BEAM/LVL/GIRDER, POST/COLUMN, ROOF/TRUSS/RAFTER.
+- Imported DXF footprint drives floor/wall extents; recognized perimeter openings are mapped to N/S/E/W walls and regenerate king/jack/header/cripple framing.
+- Recognized floor/stair/shaft openings feed the floor opening framing/sheathing workflow.
+- OBJ whole-building import uses the geometric envelope only because OBJ does not reliably carry semantic object identities; it is explicitly flagged REVIEW.
+- Existing IFC roof/truss import is retained. Whole-building semantic IFC wall/slab/door/window extraction is NOT falsely claimed in this build; use architectural DXF for automatic wall/floor recognition until IFC property mapping is validated.
+- Imported recognition is geometry automation, not structural certification. Review wall classifications, levels, openings, bearing lines and load paths before engineering use.
+
+LINKED AUTO-REGENERATION EDITION
+- Structural property edits automatically mark linked objects dirty.
+- Dependency traversal identifies connected supports/components.
+- Affected wall opening/panel framing and floor opening/detail schedules are regenerated while preserving openings.
+- Roof support/reaction paths, dependency graph, clash/QA, hardware and service checks are refreshed after edits.
+- Regeneration revisions/history can be exported to CSV.
+- This is dependency/geometry coordination, not a substitute for validated structural design or manufacturer capacity data.
+
+
+V9.7: exact face-to-face truss joints at ridge, heels and web seats. See TRUSS_JOINT_FIX_V9_7.txt
+
+- V9.9.4: Wood take-off (header button, CSV cut list / summary, PDF page) - see TRUSS_JOINT_FIX_V9_9.txt
+- V9.9.5: Design Report truss drawings in shop-drawing style (plates, dimension strings, marks, cut-angle schedule)
+- V9.9.8: Auto-design (sizes, plies, jack loads on girders, bearings, hold-down/plate requirements, bracing) with PASS / FAIL
+
+
+V10.2 DRAWING PRESENTATION UPDATE (2026-10-14)
+See README_DRAWING_STYLE_UNITS_V10_2.txt for plain-text member marks, vertical dimension text, reduced schematic plate size, and the Feet/Inches-default PDF file-units selector.
+
+CadTech Truss Design Studio V10.2 — drawing presentation updates
+
+- Member marks (TC/BC/W labels) are plain text without circular badges or white backgrounds.
+- Vertical dimensions are always rendered vertically, including short dimensions.
+- Schematic connector plates are smaller relative to the timber outline so wood joints remain visible.
+- Added File / drawing units selector in Analysis + Reports. Default is Feet / inches (fractions to 1/16 in); Metric (mm / m) can be selected for PDF reports.
+- OBJ/CAD import units remain separate from output/report units: change import units to match the source file, and use File / drawing units to change PDF dimension display.
+
+Engineering note: connector plates remain schematic placeholders and are not fabrication designs. Verify geometry and all engineering checks before issue.
+
+AI TRUSS DESIGN STUDIO — QA CHECK / FIX REPORT
+Build: V10.1 QA FIXED
+Date: 2026-10-14
+
+FIX APPLIED
+- Fixed ridge/apex joint classification and cut generation in app/connection-geometry.js.
+- Previously, top-chord endpoint logic applied the ordinary eave plumb cut before checking for a non-collinear top-chord mate. That prevented the intended ridge PEAK_MITER from being generated.
+- Ridge mate detection now runs before the ordinary eave plumb cut. Collinear top-chord continuations still remain splice/continuation joints; non-ridge free ends retain their plumb cut.
+- Updated module cache versions to help browsers load the corrected scripts.
+
+AUTOMATED CHECKS
+- JavaScript syntax checks: passed for all .js and .mjs files in app/.
+- Python syntax compile: passed for cadtech_studio.py.
+- All app/test-*.mjs regression tests: passed (20 test files).
+- ZIP archive integrity: verified.
+- Local HTML asset references: verified; study.html's index.html#analysis-workspace fragment points to an existing local page.
+
+TEST COVERAGE INCLUDES
+- DXF import and 82-truss generation
+- auto-design PASS/FAIL reporting
+- floor/wall framing and floor-boundary clipping
+- heel/outside-wall-face alignment
+- member joints, ridge mitres, web seating, manufacturing cuts
+- eave clashes, end flush, take-off and truss drawing schedules
+
+LIMITATIONS
+- These checks validate the tested software paths, not every user model or browser/Windows configuration.
+- A full interactive Windows GUI session could not be certified in this automated check.
+- Generated engineering schedules, member checks and bracing outputs remain preliminary. They are not a PE-stamped shop package, code certification, or a substitute for project-specific professional engineering review.
+
+AI TRUSS DESIGN STUDIO V10 — SINGLE-FOLDER PACKAGE
+
+All project files are grouped inside this one folder. Keep the folder structure intact, including the app and app/vendor subfolders, because the application uses relative file paths.
+
+To start:
+1. Open this folder.
+2. Read README.txt for the original launch instructions.
+3. Use Start_CadTech.bat for the CADTech launcher if your Windows setup supports it.
+4. The browser-based roof app files are inside the app subfolder; open roof.html using the launch instructions in README.txt.
+
+Included feature notes:
+- README_SELECTED_TRUSS_EDITOR.txt
+- README_SHOP_DETAILING_AND_BRACING.txt
+
+Engineering note: generated schedules and bracing information are preliminary coordination outputs and do not replace design verification by a qualified local engineer/truss designer.
+
+QA UPDATE (V10.1)
+A ridge/apex connection geometry regression was fixed and the included JavaScript regression suite passed. See QA_CHECK_REPORT_V10_1.txt for details and remaining engineering limitations.
+
+SELECTED TRUSS EDITOR UPDATE
+
+Added editing controls to the SELECTED TRUSS panel:
+- Change the selected truss classification.
+- Change ply count (1–5).
+- Edit top chord width/depth, bottom chord width/depth, and web width/depth in millimetres.
+- Apply sizes to the selected truss only, or reset its member sections to the generated defaults.
+- Updates are applied to the in-memory model and 3D view; the selected truss's member section data is changed for downstream take-off/model operations.
+
+Important engineering limitation:
+- Classification changes label the truss type only; they do not regenerate the web layout.
+- Member sizing edits do not by themselves prove structural adequacy. Re-run analysis and have loads, restraints, connections, bracing, timber grade and applicable code checks reviewed by a qualified engineer before construction.
+- The editor works on the current generated assembly in the browser session. Save/export the project using the app's project/export workflow if you need to retain changes.
+
+Validation performed:
+- JavaScript syntax checks passed for all app JS files.
+- Existing heel-joint, end-flush, and eave-clash regression tests passed.
+
+AI TRUSS DESIGN STUDIO — SHOP DETAILING + BRACING REVIEW ADDITION
+
+Added workspace: SHOP DETAILING + BRACING
+
+Includes:
+- Model-linked truss shop schedule with member counts/sections and available analysis reaction data.
+- Bearing length requirement field and bearing review status.
+- Girder-to-jack, heel-to-wall, hip/valley transfer, and bracing anchorage connection detail register.
+- Temporary erection bracing checklist and permanent lateral-restraint / roof diaphragm review register.
+- CSV export for schedules and a printable review package.
+- Project, jurisdiction, reviewer, revision and bracing coordination inputs.
+
+IMPORTANT ENGINEERING LIMITATIONS:
+This is a preliminary coordination / review tool, not a certified engineering package. It does not produce a PE stamp, final shop drawings, validated connector plate or fastener designs, exact design reactions unless correctly analyzed and independently verified, or a jurisdiction-compliant bracing design. Bracing intervals are planning inputs only and must not be treated as prescriptive code requirements. Confirm applicable code edition and current BCSI guidance with the truss designer/engineer. Do not fabricate or erect from this package until a qualified engineer and truss designer have completed and approved the project-specific design, installation bracing plan, permanent bracing plan, bearing details, connections and load path.
+
+Checks performed:
+- JavaScript syntax check for advanced-ui.js and assembly-app.js
+- Existing regression tests: heel joints, end flush, eave clash, all member joints
+
+V9.9.10 - raised-heel outside face flush with the exterior wall outside face
+=========================================================================
+Problem: where trusses bear on CAD wall outlines (WALL layer), the truss end node was snapped onto the wall's outside face, and the raised-heel
+stub and bottom-chord end are centred on that node - so both stood half a stub width (44 mm for a 2x4) OUTSIDE the wall face. The heel stub and
+the wall framing did not line up at the corner / eave.
+
+Fix (3 files):
+ * app/roof.js - every eave end that lands on a wall outside face is now recorded in truss.wallBearings (before: only ends that had to be moved,
+   so with your Project.dxf - trusses drawn exactly on the wall faces - nothing was recorded). Each entry carries alignFace = the new setting.
+   Jacks are recorded when they already sit on the face (they are not moved).
+ * app/connection-geometry.js - for a flagged bearing a face plane is built at the wall outside face: the end stud is moved inward until its
+   OUTSIDE face is on that plane (full width kept), the diagonal landing on it is trimmed to the stud's inner face, and the bottom-chord end (stub
+   heel or sawn heel) is cut flush. The rafter / overhang tail is NOT touched, so overhangs stay as specified. Analytical nodes stay on the wall
+   face (as everywhere in the app); only the physical solids change - so 3D view, truss drawings, take-off lengths and cut lists all agree.
+ * app/index.html + assembly-app.js - new GENERATION option "Raised heel outside face flush with exterior wall outside face" (default ON).
+   Untick it for the previous behaviour (heel centre line on the wall face). Click "Generate complete roof" after changing it.
+
+Result on Project.dxf (70 trusses, auto-designed): 79 wall bearings; heel stub and bottom-chord outside faces were 44 mm outside the wall face,
+now 0.0 mm for all 79. Trusses with no wall bearing are unchanged.
+
+Test: node app/test-heel-wall-face-v99.mjs (uses "Example Impoting files/Project.dxf"; fails on the previous code).
+Also: test-dxf.mjs rewritten for the strict TRUSSES-layer importer; test-takeoff-v99 chord bound widened (peak-mitered short chords are longer than their centre line).
+Cache-busting: connection-geometry v20, roof v9, assembly-app v15.
+Known, unrelated to this change: test-reference-connections-v96.mjs and test-reference-joint-style.mjs fail in the package as received (the peak-joint classification
+they check changed in an earlier patch).
+
+V9.9.8 AUTO DESIGN — targeted CAD framing patch
+
+Changes limited to:
+- app/building-import.js: records closed DXF LWPOLYLINEs, identifies closed FLOOR polygons and axis-aligned WALL rectangles, and exports generateFramingFromCAD(). It creates schematic floor joist records inside FLOOR polygons, and isolated wall assemblies with bottom plate, double top plates, and vertical studs for each WALL rectangle.
+- app/advanced-ui.js: wires generated counts into the existing whole-building import status and results table; import module cache key bumped to v=2.
+- app/test-cad-framing-v1.mjs: added regression test for a FLOOR polygon and WALL rectangle.
+
+Units: imported coordinates are converted to metres; default joist/stud spacing is 0.4064 m (16 inches), wall height 2.4384 m (8 feet). Generated geometry is schematic and marked REVIEW, not structurally certified.
+
+Validation:
+- Syntax checks passed for changed JS modules.
+- New CAD framing test passed: 10 floor joists, 1 wall assembly, 10 studs on its fixture.
+- 15 existing regression tests passed.
+- Existing app/test-dxf.mjs still fails because its old fixture expects a TRUSSES layer but the sample file only contains ROOF and WALL; this failure is unrelated to this patch.
+
+Important: Project.dxf has ROOF, WALL, and TRUSSES layers, but no FLOOR layer and its WALL entities are line segments rather than closed rectangular LWPOLYLINEs. Under the requested strict rules, this file therefore generates 0 floor joists and 0 isolated wall assemblies until the CAD includes closed FLOOR polygons and closed WALL rectangles.
+
+CAD LAYER FRAMING GENERATE V2
+
+Added to the existing V9.9.8 AUTO DESIGN application without replacing existing modules:
+- Whole-Building Framing now has independent checkboxes for FLOOR-layer framing and WALL-layer framing.
+- Added user-adjustable floor joist spacing, wall stud spacing, and wall height.
+- Added a dedicated "Generate CAD floor / wall framing" button.
+- Clicking Generate reads the imported DXF's named layers, regenerates only the selected framing categories, updates counts, and draws an axonometric schematic preview.
+- FLOOR closed LWPOLYLINE boundaries generate floor joists.
+- WALL closed rectangular polylines create isolated wall assemblies; open WALL polylines and individual WALL LINE entities create separate wall assemblies along each segment.
+- Wall assemblies include bottom plates, double top plates, and vertical studs.
+- Existing general whole-building and roof generation controls remain in place.
+
+Validation:
+- All application JavaScript files pass node --check.
+- CAD layer generation test passes (10 floor joists, 2 wall assemblies, 30 studs on synthetic sample).
+- All existing tests except test-dxf.mjs pass. test-dxf.mjs currently fails because its sample DXF has no TRUSSES layer, which the roof importer intentionally requires; this is unrelated to the CAD floor/wall changes.
+- CAD framing is schematic only and requires project-specific structural verification.
+
+from __future__ import annotations
+import http.server, socketserver, threading, webbrowser, os, sys, time
+from pathlib import Path
+
+APP_DIR = Path(__file__).resolve().parent / 'app'
+HOST='127.0.0.1'
+
+class QuietHandler(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, fmt, *args):
+        pass
+    def end_headers(self):
+        self.send_header('Cache-Control','no-store')
+        super().end_headers()
+
+def main():
+    if not APP_DIR.exists():
+        raise SystemExit('CadTech app folder is missing.')
+    os.chdir(APP_DIR)
+    with socketserver.TCPServer((HOST,0),QuietHandler) as httpd:
+        port=httpd.server_address[1]
+        url=f'http://{HOST}:{port}/index.html'
+        print('CadTech Rafter Truss Studio')
+        print('Local app:',url)
+        print('Keep this window open while using CadTech. Press Ctrl+C to close.')
+        threading.Timer(0.7,lambda:webbrowser.open(url,new=1)).start()
+        try: httpd.serve_forever()
+        except KeyboardInterrupt: pass
+
+if __name__=='__main__': main()
+
+CadTech EWP CAD Floor Framing Editor V7
+- Built on EWP Graphical 3D Editor V6.
+- Adds direct plan selection and perpendicular drag movement of EWP members.
+- Adds/deletes I-joists and EWP beams.
+- Adds rectangular floor openings and manual LVL support lines.
+- Regenerates coordinated opening cuts, headers/trimmers, support records and V6 physical 3D records for the affected floor.
+- Retains roof/truss, wall, whole-building, EWP product/service coordination and previous EWP exports.
+- Engineering capacities remain DESIGN REQUIRED without validated manufacturer product data.
+
+CadTech EWP Coordinated Floor Engine v3
+
+Added to the existing Roof/Truss + EWP Floor Framing PRO package:
+- Regenerates joist lines from the floor boundary and current spacing.
+- Cuts/segments joists at rectangular floor openings instead of leaving full joists through voids.
+- Creates paired LVL opening headers and doubled trimmer records around each opening.
+- Keeps four perimeter rim-board members as explicit framing records.
+- Rebuilds framingMembers as one coordinated floor assembly.
+- Adds cut-joist/opening-frame regeneration audit data.
+- Adds framing geometry CSV export with axis, position, start/end, span and ply data.
+- Existing roof/truss, wall, EWP schedules, whole-building coordination and load-path tools are retained.
+
+Engineering note: manufacturer-specific EWP span, hole, bearing, hanger and connection capacities remain DESIGN REQUIRED until validated product data is loaded.
+
+CadTech / AI Truss Design Studio — EWP Floor Framing PRO
+
+Added on top of the EWP Upgrade:
+- Coordinated I-joist/EWP floor framing records
+- Joist direction and spacing stored per floor
+- Perimeter rim and end support lines
+- LVL/LSL/PSL/Glulam beam support-line coordination
+- Floor opening header + doubled trimmer framing records
+- Blocking row generation
+- Cantilever coordination field
+- Squash-block, web-stiffener and hanger coordination retained from EWP Upgrade
+- Member support/reaction placeholders
+- Floor-member load-path records to beam/wall/post/foundation endpoint
+- PRO floor-framing CSV export
+
+Engineering status:
+Geometry/detailing/coordination only. Manufacturer-specific span, hole, bearing, hanger and connection capacities remain DESIGN REQUIRED until validated product data is loaded.
+
+CadTech EWP Graphical Floor Editor + Physical 3D V6
+- Retains V5 product/service coordination and all prior roof/truss/wall/whole-building features.
+- Adds member-level EWP floor editor for section, ply, position and start/end geometry.
+- Generates physical 3D framing records: I-joists carry flange/web dimensions; LVL/LSL/PSL/glulam use rectangular solid records.
+- Adds floor-level graphical member preview and physical 3D records CSV.
+- Structural PASS/FAIL remains dependent on validated manufacturer product data.
+
+CadTech EWP Intelligent Floor Import + Auto Framing V8
+- Preserves V7 CAD floor editor and previous EWP/roof/truss/wall workflows.
+- Recognizes imported floor envelope, WALL bearing geometry, BEAM/LVL/GIRDER support lines, and floor openings from the existing building importer.
+- Proposes joist direction from building dimensions and recognized support geometry.
+- Auto-generates coordinated EWP floor framing and imported support records.
+- Ambiguous/missing layer information is explicitly flagged for REVIEW.
+- Product-specific capacities and structural approval remain DESIGN REQUIRED unless validated product data is loaded.
+
+CadTech EWP Product + Service Coordination V5
+- Retains all V4 roof/truss, wall, whole-building and EWP floor features.
+- Adds EWP product-library framework with explicit validated/unvalidated state.
+- Adds member-level span, bearing and hole-rule check records.
+- Adds service/hole coordination engine for penetrations crossing I-joist members.
+- Adds Product Checks CSV and Service Checks CSV exports.
+- Generic bundled product records are geometry-only and do not provide structural capacities.
+- PASS/FAIL is only enabled when a validated product dataset contains the required limits/rules; otherwise DESIGN REQUIRED is preserved.
+
+CadTech EWP Production Coordination V4
+- Retains roof/truss, wall, whole-building and EWP V3 features.
+- Rebuilds coordinated EWP floor framing around openings.
+- Adds preliminary tributary floor load/reaction demand records (default 15 psf dead + 40 psf live in V4 engine API).
+- Adds bearing-demand records without inventing manufacturer capacities.
+- Adds hanger/trimmer/blocking accessory demand records.
+- Adds EWP geometry coordination QA.
+- Adds EWP take-off and reaction-demand CSV exports.
+- Manufacturer/product span, bearing, hole, hanger and connection capacities remain DESIGN REQUIRED.
+
+CadTech EWP Upgrade
+- I-joist catalog with physical flange/web profile metadata
+- LVL, LSL, PSL, glulam and rim-board catalog entries
+- EWP floor-member enrichment
+- Rim board and blocking coordination
+- Squash-block and hanger schedules around floor openings
+- Web-stiffener/bearing/hole-zone review metadata
+- EWP member CSV and accessories CSV
+- EWP cross-section preview
+- Manufacturer-specific capacities intentionally remain DESIGN REQUIRED until validated data is supplied
+
+CadTech EWP V9 — Outer + Inner Wall Driven Multi-Zone Floor Framing
+
+- Exterior/outer walls define the floor envelope and perimeter supports.
+- Interior walls are recognized separately and treated as candidate bearing/support lines.
+- Layers containing NON-BEARING, NONBEARING, PARTITION or NBR are not automatically used as bearings.
+- Wall/support geometry divides the floor into framing zones.
+- Joist direction is selected from support-to-support zone spans unless manually overridden.
+- Wall-zone CSV records support boundaries and review status.
+- Interior bearing classification remains REVIEW until confirmed by project structural information.
+- Manufacturer-specific EWP capacities remain DESIGN REQUIRED without validated product data.
+
+# Floor joist boundary fix
+
+- Floor joists are now clipped to each closed `FLOOR` LWPOLYLINE boundary.
+- Each joist line is intersected with polygon edges; paired intersections define the valid inside-floor spans.
+- Concave floor outlines can produce multiple in-boundary joist segments, rather than full bounding-box joists projecting beyond walls.
+- Wall framing generation is unchanged.
+- Added `app/test-cad-floor-clipping-v3.mjs` to check that rectangular-floor joist endpoints remain within the CAD boundary.
+- Verification: floor clipping test and CAD-layer generation test passed. Full `test-dxf.mjs` remains dependent on its fixture containing the required `TRUSSES` layer.
+- Geometry is schematic and still requires engineering review.
+
+CadTech Global Truss Joint Fix V9.3
+
+- Keeps analytical panel nodes unchanged for all internal truss joints.
+- Removes double trimming of member centerlines plus cut solids.
+- Uses physical cut profiles for web-to-top chord, web-to-bottom chord, heel BC-to-TC, and peak TC-to-TC joints.
+- Collinear chord splices remain continuous.
+- Free/eave ends remain uncut.
+- Truss-to-truss receiver-face clipping remains active.
+- Applies through the shared viewer/connection geometry path to all truss families.
+- Connector plate engineering/capacity is not inferred by geometry.
+
+# AI-Truss-Design-Studio
+Designing structural roof trusses can often be a repetitive and time-consuming process. To bridge the gap between architectural layouts and structural framing, I’ve built an open-source project: AI-Truss-Design!  This tool is designed to help draftspeople, structural engineers, and designers streamline layout generation and geometry processing.
+
+## EWP Coordinated Floor Engine v3
+The EWP Floor Framing PRO module now regenerates joist geometry around floor openings, creates paired opening headers and doubled trimmers, stores explicit perimeter rim members, and exports coordinated framing geometry. Existing roof/truss and whole-building functions are retained. Manufacturer-specific capacities remain DESIGN REQUIRED.
+
+V9.5 REFERENCE CONNECTION CORRECTION
+- Ridge/top-chord apex: both top chords terminate at a shared apex envelope; no member edge extends past the peak.
+- Heel: bottom chord remains the lower envelope and terminates at the analytical heel; no L-shaped return/notch is generated.
+- Top chord alone continues as the eave overhang.
+- Webs are secondary infill members and are face-fitted between TC/BC. Signed edge offsets are allowed so a diagonal web keeps its full rectangular section up to the oblique saw cut instead of collapsing into a triangular wedge.
+- Analytical panel points are unchanged.
+
+## V9.6 exact reference joint correction
+- Ridge miter now straddles the analytical apex so both top-chord solids share one zero-gap seam. V9.5 incorrectly shifted both cut edges inward and created a V-notch.
+- Bottom chords at true heels are now physically face-cut to the sloping top chord while the analytical heel node remains fixed; this removes the square/hooked BC end.
+- Webs continue to be fitted between chord faces with constant section depth and oblique end faces.
+- Free top-chord eave tails remain untouched.
+
+## Wall Framing PRO detailing upgrade
+- Added `app/wall-framing-pro.js` with configurable header plies, jack/trimmer stud plies, blocking rows, sheathing sheet estimates, wall panel breakdown, optional conceptual diagonal-brace visualization, wall geometry QA, member schedule CSV, QA CSV and wall elevation SVG.
+- Integrated controls into the existing CAD floor/wall framing panel. After generating/importing DXF framing, use **Wall member schedule CSV**, **Wall framing QA CSV**, and **Show wall elevation**.
+- Fixed a wall-depth inference defect: a single horizontal/vertical WALL centerline no longer gets interpreted as having a thickness equal to its full length. CAD thickness is inferred only when the short bounding-box dimension is credible relative to the wall run.
+- The new checks validate geometry and layout consistency only. Header sizing, stud capacity, shear walls, sheathing nailing, hold-downs, anchorage, connections and code compliance still require project-specific engineering review.
+- Regression test: `node app/test-wall-framing-pro.mjs`.
+
+CadTech Solid Joint Face Fix
+- Web/vertical endpoints meeting top or bottom chords are trimmed to the physical chord face.
+- Generic solid-member end extension removed from the 3D viewer.
+- Truss-to-truss receiver-plane clipping retained.
+- Free chord/eave ends are preserved.
+- Viewer and OBJ export use the corrected connection geometry.
+
+@echo off
+cd /d "%~dp0"
+where py >nul 2>nul
+if %errorlevel%==0 (
+  py -3 cadtech_studio.py
+) else (
+  python cadtech_studio.py
+)
+if errorlevel 1 pause
+
+CadTech Timber Heel / Chord / Web Physical Joint Fix
+=====================================================
+Analytical truss panel points remain unchanged.
+Rendered/exported timber is face-trimmed at physical joints:
+- web -> top/bottom chord face
+- bottom chord -> sloping top-chord face at heel
+- top-chord peak -> one chord butts to the opposing chord face
+- collinear chord splices remain continuous
+- free/eave ends remain unchanged
+- whole secondary truss still clips to the near physical face of its receiving truss
+This is geometry/coordination logic only. Connector plate sizing and structural joint capacity remain DESIGN REQUIRED.
+
+CadTech Truss Joint Fix V9.7  (exact face-to-face joints)
+=========================================================
+Problem (marked on the screenshot): ridge showed a gap/notch with the king post poking through,
+heels had spikes, overlapping webs and a BC that did not meet the heel stub.
+Root cause: per-end cut offsets were computed in a frame whose side sign was mirrored for member START ends,
+so one rafter was cut correctly and the other was not; the king post was only given a flat cut.
+
+Fix (app/connection-geometry.js): every timber is now an exact convex outline in the truss plane,
+clipped by the real faces of its neighbours, then extruded:
+- Ridge / any chord kink: zero-gap mitre through the two facing-edge intersections.
+- Web ends: sawn to the face of every chord that carries them (king post under the ridge gets the pointed V seat).
+- Heel: BC end flush with the outside face of the heel stub; stub sits on the BC top face and under the rafter face;
+  the first diagonal butts the stub and the rafter face. Rafter tail continues straight (no kink).
+- Web-to-web at a node: steeper web wins, the other butts on its side face (mitre when equally steep).
+- Collinear chord splices / rafter-overhang stay continuous. Analytical nodes are never moved.
+- Truss-to-truss receiver clipping still works (applied as a plane clip to the same outline).
+- Viewer and OBJ export both use memberSolid() so the export matches the screen.
+Tests: node app/test-joint-solids-v97.mjs  (no overlaps, zero-gap ridge, seated heels across 6 web styles x 3 profiles)
+Not a connector-plate design: geometry only.
+
+CadTech Truss Joint Fix V9.8  (overhang alignment + deep-rafter heels)
+======================================================================
+Point 1 - some Common / Girder trusses still had unfixed heel connections
+  Cause: the heel stub only exists in the clear space between the bottom-chord top face and the rafter underside.
+  After "Analyze", Common/Girder trusses get deep top chords (2x10 / 2x12). With the 250 mm heel that clear
+  space shrinks to a sliver (~75 mm at 2x10, nothing at 2x12) and the old code flipped between two different joint
+  modes at an arbitrary depth, leaving a short "hook" stub that did not seat on the rafter.
+  Fix (app/connection-geometry.js): if the clear space is under 100 mm the stub is dropped and the bottom chord is
+  sawn flush to the rafter underside (classic heel). Otherwise the seated stub from V9.7 is unchanged.
+  Slivers (< 50 mm mean length) left between two faces are no longer drawn as timbers.
+  Note: a heel with less than 100 mm clear is now always a sawn heel. To keep a stub on a deep rafter, raise the Heel depth.
+
+Point 2 - top of the top chord must match the top of the overhang
+  Cause: Analyze resized the 'top' members but never the 'overhang' member, so the overhang stayed 2x4 while the
+  rafter became e.g. 2x6. Both are centred on the same line, so the overhang top sat lower (25 mm step for 2x6).
+  Fix: (a) advanced-ui.js - overhang takes the top-chord section after analysis;
+       (b) connection-geometry.js - the overhang solid always takes the depth and thickness of the top chord it
+           continues, so existing / edited models are corrected too. Top faces are now one continuous line.
+
+Tests: node app/test-joint-solids-v98.mjs (new). test-heel-joints.mjs now uses a 300 mm heel for its 150 mm rafter.
+Cache-busting query strings bumped (connection-geometry v12, advanced-ui v5) so the browser loads the new code.
+Geometry only - not connector-plate design.
+
+CadTech Truss Joint Fix V9.9  (flush connections between perpendicular trusses)
+==============================================================================
+Problem: some trusses ran THROUGH perpendicular trusses (e.g. front jacks through a side jack, stepdown through front
+jacks, hip carrier through a side jack) instead of stopping at the side face.
+Causes (app/roof.js):
+ 1. The receiver search only looked at Girders and Hip carriers, so a truss ending on a side jack / front jack /
+    stepdown / common got NO connection and was never cut.
+ 2. The side-jack "side-flush" rule kept the lowest end; when that lowest end was the end touching the receiver it
+    could not tell which side to keep.
+ 3. Only one connection per truss was allowed, so a truss ending on a receiver at BOTH ends was cut at one end only.
+Fix:
+ - New generic "end-flush" connection: any truss end that lands on the body of a non-parallel truss is cut flush to
+   that truss's near face. Corner contacts (both ends meet, e.g. hips/valleys) are left alone.
+ - Side-flush keeps the end FARTHEST from the receiver when the lowest end is the touching one.
+ - Up to two connections per truss (one per end), never two at the same point.
+Tests: node app/test-end-flush-v99.mjs (new). Example roof TRUSSES.dxf: trusses passing through a perpendicular truss 20 -> 9
+(remaining: corner/overhang crossings between full trusses and the diagonal hip-carrier case, where a diagonal cut leaves
+up to ~15 mm of corner overlap).
+Cache-busting bumped (connection-geometry v13, roof v5). Hard-refresh (Ctrl+F5).
+
+V9.9.1 - trusses still not reaching their perpendicular trusses
+ 1. A truss that CARRIES other trusses was being cut by them. Example: side jack SJ17 carries front jacks FJ12-FJ16, but
+    the side-flush rule also trimmed SJ17 at FJ12/FJ13, so it stopped about 0.6 m short of common truss C07. The rule now
+    skips a receiver whose own end lands on this truss (that truss is the one that gets cut, not this one).
+ 2. A jack whose raised end stops short of a perpendicular truss (SJ14 ended 423 mm before front jack FJ17) is extended
+    along its own slope to that truss, up to 0.6 m and only if the height meets within 120 mm, then connected flush.
+    The extension is recorded as t.extendedEnd (mm).
+Tests: test-end-flush-v99.mjs now also covers SJ17 and SJ14. Cache-busting: roof.js v6.
+Still open: corner/overhang crossings between full trusses (C07/C08) and the diagonal hip-carrier corner overlap (~15 mm).
+
+V9.9.2 - full-width end stud where a truss butts a perpendicular truss
+ Problem: the connections were right, but the vertical stud at the cut end was a thin sliver. The end node lies on the
+ receiver's centre line, so cutting at the receiver's near face removed most of the stud (about 25 mm of 89 mm left).
+ Fix (app/connection-geometry.js, endStudAdjust): the end stud is moved inward until its OUTSIDE face is flush with the
+ receiver face and it keeps its full width; its top follows the top-chord underside. The diagonal web that lands on the
+ same node is trimmed back to the stud's inner face so they do not overlap. Only true studs (both nodes on the same
+ X) are moved; steep diagonals are not treated as studs. Top/bottom chords still run to the receiver face.
+ Test: test-end-flush-v99.mjs checks every end stud at a flush cut is full width (67 in the example roof; fails on V9.9.1).
+ Note: the manufacturing cut list (memberCutProfile) is unchanged - this affects the 3D solids.
+ Cache-busting: connection-geometry v14.
+
+V9.9.3 - no overhang where two eaves meet
+ Problem: at re-entrant eave corners (and where an eave end meets a perpendicular truss) the overhang tails of the two
+ eaves crossed each other or ran through the neighbouring truss.
+ Fix: roof.js records, for every eave end, what its tail would hit along the end direction in plan (t.eaveHits: another
+ truss body, or another truss's tail). advanced.js templateMembers() skips the overhang at that end when the hit lies within
+ the tail length (the other truss's tail length for tail-to-tail hits; hip carriers use their 45-degree plan factor).
+ Both tails of a crossing pair are removed. Ordinary eaves keep their overhang.
+ Example roof TRUSSES.dxf: 15 of 101 overhangs removed (all at eave intersections), 0 trusses run through a perpendicular
+ truss (was 9). Simple gable/hip roof (nw-6th-st.obj): none removed.
+ Test: node app/test-eave-clash-v99.mjs. Overhang is recomputed when templates are rebuilt / roof regenerated.
+ Cache-busting: roof v7, advanced v4.
+
+V9.9.4 - wood take-off
+ The roof app had no usable wood take-off: the PDF only listed pieces per role and every chord appeared as many short
+ panel-length pieces. New (app/takeoff.js):
+  * "Wood take-off" button in the header (next to Export model): table by section with pieces, cut lin ft, nominal board
+    feet, boards to order by stock length (8-24 ft), spliced pieces and yield, plus download links.
+  * Export dialog now also contains wood-takeoff-summary.csv, wood-cutlist.csv (every board: truss, mark, role, section,
+    plies, qty, cut length ft-in and mm, stock length, BF, note) and wood-takeoff-by-truss.csv.
+  * PDF report: the old minimal table is replaced by a full WOOD TAKE-OFF page (totals, by section, stock boards, by role,
+    by truss).
+ How it counts:
+  * Collinear top-chord / overhang segments (and bottom-chord segments) that share nodes and the same section are merged
+    into ONE continuous board; the overhang is part of its rafter. Webs are single boards.
+  * Length = long-point cut length of the actual cut solid (so the trimmed web / stud / flush-cut ends are included).
+  * Plies multiply the quantity (2-ply girders = 2 boards). Section comes from the analysis (sectionName); trusses not yet
+    analyzed use the template 2x4 and the panel says so.
+  * Ordering: first-fit-decreasing into 8,10,12,14,16,18,20,24 ft stock with 1/8 in kerf; a chord longer than 24 ft is a
+    spliced piece (24 ft board + remainder). Board feet are nominal (2x4 = 0.667 BF/ft). Add your own waste allowance.
+ Example roof TRUSSES.dxf (template 2x4): 1476 members -> 1010 boards, 4430 lin ft, 2953 BF.
+ Test: node app/test-takeoff-v99.mjs. Cache-busting: connection-geometry v15, report v4, takeoff v1.
+
+V9.9.5 - truss drawings in the Design Report in shop-drawing style (app/truss-drawing.js)
+ Reference: attic/gable truss shop drawings (lumber with plates, dimension strings, call-outs, pitch marker, cut marks).
+ Each truss page now has:
+  * Lumber drawn from the SAME cut outlines as the 3D model (flush heel/ridge cuts, seated webs, full-width end studs).
+  * Connector plates drawn at every real joint (not at continuous chord points) - schematic location only, size/orientation
+    by plate design.
+  * Dimension method: bottom-chord panel points; overhang | bearing span | overhang; OVERALL width; overall height and end
+    heights; arrowheads and extension lines; feet-inches to 1/16 in (or metric when the report is exported metric).
+  * Call-outs in a row above the truss (TOP CHORD / WEBS / BOTTOM CHORD with section, plies and the project lumber grade)
+    with vertical leaders; pitch triangle (rise/12); title "G01 - GIRDER TRUSS - span - pitch" underlined like the references.
+  * Member marks (TC1, BC1, W1...) on the drawing that tie to a board-level member schedule below it: mark, role, section,
+    plies, cut length (long point, chord segments merged, overhang included), cut angles A/B from square, force, ratio and
+    governing case (worst segment of a merged chord). Marks, lengths and board counts are identical to the wood take-off.
+  * The compact two-column design information table leaves room for the drawing; flat trusses get a shorter drawing area.
+ Test: node app/test-truss-drawing-v99.mjs (82 trusses drawn; schedule = take-off boards).
+ Cache-busting: connection-geometry v16, takeoff v2, truss-drawing v2, report v5.
+
+V9.9.6 - connector plates smaller than the wood (truss-drawing.js)
+ Plates were sized from 1.55 x the member depth, so they stood proud of the lumber. They are now sized from the CHORD depth:
+ 78% of the chord depth across the chord and about 1.45 x the chord depth along it, so lumber shows around every plate.
+ Orientation unchanged (along the bottom chord at bottom-chord joints, along the top chord elsewhere). Still schematic only.
+ Cache-busting: truss-drawing v3.
+
+V9.9.7 - wood take-off on every truss page and up front in the Design Report
+ * Each truss page now ends with its own "WOOD TAKE-OFF - <truss>" table: boards, pieces (plies counted), cut lin ft,
+   nominal board feet and the stock lengths needed, with a truss total.
+ * The member schedule gained Stock (ft) and Nominal BF columns per board.
+ * The roof-level WOOD TAKE-OFF pages moved from the end of the PDF to right after the ROOF TRUSS LAYOUT page (page 4),
+   ahead of the truss pages. ISSUE NOTES stays last.
+ Same numbers everywhere: schedule, per-truss table, roof pages, app panel and CSVs all come from takeoff.js.
+ Cache-busting: report v6.
+
+V9.9.8 - AUTO-DESIGN: every truss ends PASS or FAIL (no more "DESIGN REQUIRED" / "REVIEW")
+ Why you saw those statuses: the old checks needed numbers the app did not have (hold-down and plate capacity default to 0, so
+ every truss said DESIGN REQUIRED), flagged long compression members for REVIEW, flagged girders "TRANSFER LOADS - reanalysis
+ required", and stopped at 3 plies / 89 mm bearing.
+ "Analyze" now designs automatically (app/autodesign.js, engineering.js, advanced.js, engine.js):
+  1 Member sizes 2x4..2x12 per chord/web group, plies 1..5 (was 3), web pattern and interior bearings (unless "End bearings only").
+  2 Jack / hip-carrier reactions are applied to the girder or carrier that carries them as NODAL LOADS (per load case, at the
+    connection point, shared between the two top-chord nodes) and the girder is re-designed - repeated until the loads stop
+    changing (chains such as jack -> hip carrier -> girder converge in a few rounds). Equilibrium verified.
+  3 Bearing: bearing length 89 -> 140 mm (5.5 in) if needed; if still short, plies are added (longer bearings are not realistic).
+  4 Uplift: hold-down requirement sized to the demand. If you enter a hold-down capacity it is used (up to 2 per bearing).
+  5 Joints: required capacity per joint stated from the largest member force. If you enter a plate capacity it is checked.
+  6 Long compression members get lateral-restraint points (<= brace trigger unbraced length) instead of "REVIEW".
+ Result per truss and for the roof: PASS or FAIL with the reason. FAIL happens when no combination up to 2x12 / 5-ply works
+ (e.g. extreme load, "End bearings only"), when an entered hold-down / plate capacity is too small, or a bearing cannot be met.
+ Shown in: Analyze results table (Result column, roof result line, failure reasons, auto-design changes), PDF summary page, each
+ truss page (DESIGN CHECK table, DESIGN RESULT line, automatic design changes, braced members, transfer table).
+ Inputs renamed: Hold-down capacity (0 = size to demand), Joint/plate capacity (0 = state requirement).
+ IMPORTANT - preliminary screening: with capacity 0 the hold-down and plate checks PASS by stating the requirement (kN) that the
+ connector must develop; the product / plate design and bracing details still need engineering verification.
+ Tests: node app/test-autodesign-v99.mjs. Cache-busting: advanced v5, engineering v2, engine v4, autodesign v1, report v7.
+
+CadTech Truss Reference Geometry V9.4
+=====================================
+Visual target derived from the user-supplied common, hip/step-down, mono and attic truss images:
+- Top and bottom chords define the controlling truss envelope.
+- Collinear chord segments remain continuous through panel points.
+- Webs fit between chord faces; they do not pass through chords.
+- Diagonal web ends use face-matching oblique cuts.
+- Verticals/king posts seat between chord faces.
+- Both top chords use a common apex miter/cut plane at the peak.
+- At a heel the sloping top chord continues into the intended eave overhang while the bottom chord terminates at the heel joint.
+- Attic-room chords and piggyback/step-down members follow the same face-to-face fitting rules.
+- Analytical panel nodes are retained for analysis; physical timber solids are generated from joint cut planes.
+- Truss-to-truss receiver clipping remains separate from internal member fabrication cuts.
+- OBJ export uses the same physical joint-cut geometry as the 3D viewport.
+Connector plate engineering is not inferred from these geometry rules.
+
+CadTech Wall Framing PRO — Change Notes
+
+1. Wall member detailing controls:
+   - 1–4 header plies
+   - 1–3 jack/trimmer stud plies per side
+   - adjustable blocking row spacing
+   - sheathing sheet quantity estimate
+   - optional conceptual diagonal brace overlay
+2. Wall geometry QA for invalid wall lengths/heights, member IDs/coordinates, opening bounds, opening head/sill issues, and missing plate/header records.
+3. Wall member schedule CSV and wall QA CSV exports.
+4. Selectable wall elevation SVG dialog.
+5. Wall panels are divided into reviewable segments with opening counts.
+6. Fixed CAD wall thickness inference for centerline-only lines. The short bounding-box dimension is used only when credible relative to the wall length.
+7. Added regression test at app/test-wall-framing-pro.mjs.
+
+Limitations: This is a framing layout/detailing aid. It does not certify structural adequacy or replace applicable code calculations for headers, studs, lateral systems, anchorage, connections, sheathing fastening or load paths.
+
+AI TRUSS DESIGN STUDIO V10.5
+
+Changes
+- Completed the light white/gray theme across the injected Analysis + Reports workspace, selected-truss editor, controls, dialogs, and 3D viewport/grid.
+- File / drawing units defaults to Feet / inches. The selected-truss schedule and selection metrics use feet/inches; changing the units selector switches these displayed lengths to metres. Report/export unit selection remains available in Analysis + Reports.
+- Added nominal timber presets 2x4, 2x6, 2x8, 2x10, 2x12 for top chord, bottom chord and web member size editing. Selecting a preset populates the custom dimension fields; click Apply sizes to selected truss to apply.
+- Added Web style options (Fink, Howe, Pratt, Fan, Warren, Queen, Kingpost) and Rebuild webs only. This regenerates web members while retaining existing top chord, bottom chord and overhang members. The app flags that structural analysis and connection verification must be rerun.
+- Updated asset cache versions.
+
+Validation
+- JavaScript syntax checks passed for modified scripts.
+- Existing app/test-*.mjs regression tests passed.
+
+Limitations
+- Truss style regeneration is a geometry/template operation, not a certified connection design. Web-to-chord joints may need adjustment/review, and structural analysis must be rerun.
+- Feet/inches display conversion applies to schedule and selected-truss span/height readouts. Engineering load inputs keep their stated units (e.g. psf, kN, psi); dimensions in all other specialist panels should be checked against their visible unit labels.
+- Not a substitute for jurisdiction-specific professional engineering review.
+
+AI TRUSS DESIGN STUDIO V10.4 — LIGHT INTERFACE
+
+Changes:
+- Reworked the application UI into a white and cool-gray visual theme with dark slate text, restrained blue-gray accents, cleaner borders, and lighter controls.
+- Moved DISPLAY LAYERS above the Roof framing workspace heading, as requested.
+- Kept the existing layer checkbox IDs, color selector ID, section cut ID, and data-layer attributes so existing view controls can continue to bind.
+- Kept both index.html and roof.html synchronized.
+- Updated CSS and app cache-busting versions.
+
+Note: This is an interface/layout update. It does not certify structural calculations or modify engineering assumptions.
+
+AI TRUSS DESIGN STUDIO V10.3 — ENGINEERING QA / STANDARDS REVIEW WORKSPACE
+
+Added to SHOP DETAILING + BRACING:
+- ISO 9001-aligned project QA checklist (not ISO certification).
+- Fields to record the applicable TPI standard/edition and SBCA BCSI edition; user must confirm the current applicable editions for their jurisdiction and project.
+- Licensed engineer name/registration, review status and signed drawing/calculation reference fields.
+- QA release checklist covering document control, design inputs, reactions/load combinations, bearing, girder-to-jack transfer, plates/fasteners, temporary bracing, permanent bracing, fabrication inspection and final release.
+- Approval/standards metadata included in package preview, CSV export and print review package.
+- Explicit HOLD status when signed approval reference is absent or engineer status is not marked approved outside the app.
+
+IMPORTANT:
+This is a coordination and quality-record workflow, not a certification engine. It does not verify ISO 9001 conformity, identify the legally applicable TPI/BCSI edition automatically, provide a professional engineer stamp, or independently validate reactions, connections, bearing, fabrication tolerances or bracing. A user-entered approval status/reference is a record only and is not cryptographic verification. Do not fabricate or erect until project-specific drawings/calculations and erection/permanent bracing plans are reviewed and signed by appropriately qualified professionals for the jurisdiction.

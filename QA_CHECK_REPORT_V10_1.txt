@@ -1,0 +1,29 @@
+AI TRUSS DESIGN STUDIO — QA CHECK / FIX REPORT
+Build: V10.1 QA FIXED
+Date: 2026-10-14
+
+FIX APPLIED
+- Fixed ridge/apex joint classification and cut generation in app/connection-geometry.js.
+- Previously, top-chord endpoint logic applied the ordinary eave plumb cut before checking for a non-collinear top-chord mate. That prevented the intended ridge PEAK_MITER from being generated.
+- Ridge mate detection now runs before the ordinary eave plumb cut. Collinear top-chord continuations still remain splice/continuation joints; non-ridge free ends retain their plumb cut.
+- Updated module cache versions to help browsers load the corrected scripts.
+
+AUTOMATED CHECKS
+- JavaScript syntax checks: passed for all .js and .mjs files in app/.
+- Python syntax compile: passed for cadtech_studio.py.
+- All app/test-*.mjs regression tests: passed (20 test files).
+- ZIP archive integrity: verified.
+- Local HTML asset references: verified; study.html's index.html#analysis-workspace fragment points to an existing local page.
+
+TEST COVERAGE INCLUDES
+- DXF import and 82-truss generation
+- auto-design PASS/FAIL reporting
+- floor/wall framing and floor-boundary clipping
+- heel/outside-wall-face alignment
+- member joints, ridge mitres, web seating, manufacturing cuts
+- eave clashes, end flush, take-off and truss drawing schedules
+
+LIMITATIONS
+- These checks validate the tested software paths, not every user model or browser/Windows configuration.
+- A full interactive Windows GUI session could not be certified in this automated check.
+- Generated engineering schedules, member checks and bracing outputs remain preliminary. They are not a PE-stamped shop package, code certification, or a substitute for project-specific professional engineering review.

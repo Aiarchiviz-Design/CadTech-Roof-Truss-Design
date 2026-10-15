@@ -1,0 +1,18 @@
+AI TRUSS DESIGN STUDIO V10 — SINGLE-FOLDER PACKAGE
+
+All project files are grouped inside this one folder. Keep the folder structure intact, including the app and app/vendor subfolders, because the application uses relative file paths.
+
+To start:
+1. Open this folder.
+2. Read README.txt for the original launch instructions.
+3. Use Start_CadTech.bat for the CADTech launcher if your Windows setup supports it.
+4. The browser-based roof app files are inside the app subfolder; open roof.html using the launch instructions in README.txt.
+
+Included feature notes:
+- README_SELECTED_TRUSS_EDITOR.txt
+- README_SHOP_DETAILING_AND_BRACING.txt
+
+Engineering note: generated schedules and bracing information are preliminary coordination outputs and do not replace design verification by a qualified local engineer/truss designer.
+
+QA UPDATE (V10.1)
+A ridge/apex connection geometry regression was fixed and the included JavaScript regression suite passed. See QA_CHECK_REPORT_V10_1.txt for details and remaining engineering limitations.

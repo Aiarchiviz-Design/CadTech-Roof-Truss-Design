@@ -1,0 +1,16 @@
+CadTech Wall Framing PRO — Change Notes
+
+1. Wall member detailing controls:
+   - 1–4 header plies
+   - 1–3 jack/trimmer stud plies per side
+   - adjustable blocking row spacing
+   - sheathing sheet quantity estimate
+   - optional conceptual diagonal brace overlay
+2. Wall geometry QA for invalid wall lengths/heights, member IDs/coordinates, opening bounds, opening head/sill issues, and missing plate/header records.
+3. Wall member schedule CSV and wall QA CSV exports.
+4. Selectable wall elevation SVG dialog.
+5. Wall panels are divided into reviewable segments with opening counts.
+6. Fixed CAD wall thickness inference for centerline-only lines. The short bounding-box dimension is used only when credible relative to the wall length.
+7. Added regression test at app/test-wall-framing-pro.mjs.
+
+Limitations: This is a framing layout/detailing aid. It does not certify structural adequacy or replace applicable code calculations for headers, studs, lateral systems, anchorage, connections, sheathing fastening or load paths.

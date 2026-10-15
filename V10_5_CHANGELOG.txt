@@ -1,0 +1,17 @@
+AI TRUSS DESIGN STUDIO V10.5
+
+Changes
+- Completed the light white/gray theme across the injected Analysis + Reports workspace, selected-truss editor, controls, dialogs, and 3D viewport/grid.
+- File / drawing units defaults to Feet / inches. The selected-truss schedule and selection metrics use feet/inches; changing the units selector switches these displayed lengths to metres. Report/export unit selection remains available in Analysis + Reports.
+- Added nominal timber presets 2x4, 2x6, 2x8, 2x10, 2x12 for top chord, bottom chord and web member size editing. Selecting a preset populates the custom dimension fields; click Apply sizes to selected truss to apply.
+- Added Web style options (Fink, Howe, Pratt, Fan, Warren, Queen, Kingpost) and Rebuild webs only. This regenerates web members while retaining existing top chord, bottom chord and overhang members. The app flags that structural analysis and connection verification must be rerun.
+- Updated asset cache versions.
+
+Validation
+- JavaScript syntax checks passed for modified scripts.
+- Existing app/test-*.mjs regression tests passed.
+
+Limitations
+- Truss style regeneration is a geometry/template operation, not a certified connection design. Web-to-chord joints may need adjustment/review, and structural analysis must be rerun.
+- Feet/inches display conversion applies to schedule and selected-truss span/height readouts. Engineering load inputs keep their stated units (e.g. psf, kN, psi); dimensions in all other specialist panels should be checked against their visible unit labels.
+- Not a substitute for jurisdiction-specific professional engineering review.

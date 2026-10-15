@@ -1,0 +1,17 @@
+CAD LAYER FRAMING GENERATE V2
+
+Added to the existing V9.9.8 AUTO DESIGN application without replacing existing modules:
+- Whole-Building Framing now has independent checkboxes for FLOOR-layer framing and WALL-layer framing.
+- Added user-adjustable floor joist spacing, wall stud spacing, and wall height.
+- Added a dedicated "Generate CAD floor / wall framing" button.
+- Clicking Generate reads the imported DXF's named layers, regenerates only the selected framing categories, updates counts, and draws an axonometric schematic preview.
+- FLOOR closed LWPOLYLINE boundaries generate floor joists.
+- WALL closed rectangular polylines create isolated wall assemblies; open WALL polylines and individual WALL LINE entities create separate wall assemblies along each segment.
+- Wall assemblies include bottom plates, double top plates, and vertical studs.
+- Existing general whole-building and roof generation controls remain in place.
+
+Validation:
+- All application JavaScript files pass node --check.
+- CAD layer generation test passes (10 floor joists, 2 wall assemblies, 30 studs on synthetic sample).
+- All existing tests except test-dxf.mjs pass. test-dxf.mjs currently fails because its sample DXF has no TRUSSES layer, which the roof importer intentionally requires; this is unrelated to the CAD floor/wall changes.
+- CAD framing is schematic only and requires project-specific structural verification.

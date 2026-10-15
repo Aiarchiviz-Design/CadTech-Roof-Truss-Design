@@ -1,0 +1,25 @@
+V9.9.10 - raised-heel outside face flush with the exterior wall outside face
+=========================================================================
+Problem: where trusses bear on CAD wall outlines (WALL layer), the truss end node was snapped onto the wall's outside face, and the raised-heel
+stub and bottom-chord end are centred on that node - so both stood half a stub width (44 mm for a 2x4) OUTSIDE the wall face. The heel stub and
+the wall framing did not line up at the corner / eave.
+
+Fix (3 files):
+ * app/roof.js - every eave end that lands on a wall outside face is now recorded in truss.wallBearings (before: only ends that had to be moved,
+   so with your Project.dxf - trusses drawn exactly on the wall faces - nothing was recorded). Each entry carries alignFace = the new setting.
+   Jacks are recorded when they already sit on the face (they are not moved).
+ * app/connection-geometry.js - for a flagged bearing a face plane is built at the wall outside face: the end stud is moved inward until its
+   OUTSIDE face is on that plane (full width kept), the diagonal landing on it is trimmed to the stud's inner face, and the bottom-chord end (stub
+   heel or sawn heel) is cut flush. The rafter / overhang tail is NOT touched, so overhangs stay as specified. Analytical nodes stay on the wall
+   face (as everywhere in the app); only the physical solids change - so 3D view, truss drawings, take-off lengths and cut lists all agree.
+ * app/index.html + assembly-app.js - new GENERATION option "Raised heel outside face flush with exterior wall outside face" (default ON).
+   Untick it for the previous behaviour (heel centre line on the wall face). Click "Generate complete roof" after changing it.
+
+Result on Project.dxf (70 trusses, auto-designed): 79 wall bearings; heel stub and bottom-chord outside faces were 44 mm outside the wall face,
+now 0.0 mm for all 79. Trusses with no wall bearing are unchanged.
+
+Test: node app/test-heel-wall-face-v99.mjs (uses "Example Impoting files/Project.dxf"; fails on the previous code).
+Also: test-dxf.mjs rewritten for the strict TRUSSES-layer importer; test-takeoff-v99 chord bound widened (peak-mitered short chords are longer than their centre line).
+Cache-busting: connection-geometry v20, roof v9, assembly-app v15.
+Known, unrelated to this change: test-reference-connections-v96.mjs and test-reference-joint-style.mjs fail in the package as received (the peak-joint classification
+they check changed in an earlier patch).

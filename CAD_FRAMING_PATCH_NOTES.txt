@@ -1,0 +1,16 @@
+V9.9.8 AUTO DESIGN — targeted CAD framing patch
+
+Changes limited to:
+- app/building-import.js: records closed DXF LWPOLYLINEs, identifies closed FLOOR polygons and axis-aligned WALL rectangles, and exports generateFramingFromCAD(). It creates schematic floor joist records inside FLOOR polygons, and isolated wall assemblies with bottom plate, double top plates, and vertical studs for each WALL rectangle.
+- app/advanced-ui.js: wires generated counts into the existing whole-building import status and results table; import module cache key bumped to v=2.
+- app/test-cad-framing-v1.mjs: added regression test for a FLOOR polygon and WALL rectangle.
+
+Units: imported coordinates are converted to metres; default joist/stud spacing is 0.4064 m (16 inches), wall height 2.4384 m (8 feet). Generated geometry is schematic and marked REVIEW, not structurally certified.
+
+Validation:
+- Syntax checks passed for changed JS modules.
+- New CAD framing test passed: 10 floor joists, 1 wall assembly, 10 studs on its fixture.
+- 15 existing regression tests passed.
+- Existing app/test-dxf.mjs still fails because its old fixture expects a TRUSSES layer but the sample file only contains ROOF and WALL; this failure is unrelated to this patch.
+
+Important: Project.dxf has ROOF, WALL, and TRUSSES layers, but no FLOOR layer and its WALL entities are line segments rather than closed rectangular LWPOLYLINEs. Under the requested strict rules, this file therefore generates 0 floor joists and 0 isolated wall assemblies until the CAD includes closed FLOOR polygons and closed WALL rectangles.

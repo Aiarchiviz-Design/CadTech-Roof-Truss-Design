@@ -1,0 +1,10 @@
+AI TRUSS DESIGN STUDIO V10.4 — LIGHT INTERFACE
+
+Changes:
+- Reworked the application UI into a white and cool-gray visual theme with dark slate text, restrained blue-gray accents, cleaner borders, and lighter controls.
+- Moved DISPLAY LAYERS above the Roof framing workspace heading, as requested.
+- Kept the existing layer checkbox IDs, color selector ID, section cut ID, and data-layer attributes so existing view controls can continue to bind.
+- Kept both index.html and roof.html synchronized.
+- Updated CSS and app cache-busting versions.
+
+Note: This is an interface/layout update. It does not certify structural calculations or modify engineering assumptions.
